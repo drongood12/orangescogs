@@ -2,181 +2,349 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-11-19 01:02+0300\n"
-"PO-Revision-Date: 2020-11-19 01:15+0300\n"
+"POT-Creation-Date: 2020-11-19 03:09+0300\n"
+"PO-Revision-Date: 2020-11-19 03:13+0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: redgettext 3.3\n"
-"X-Generator: Poedit 2.4.2\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 2.0.7\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"Language: ru_RU\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: tgverify\tgverify.py:49 tgverify\tgverify.py:58
-msgid ""
-"\n"
-"        SS13 Configure the settings on the verification cog\n"
-"        "
-msgstr ""
-"\n"
-"SS13 Настройка системы подтверждения аккаунта "
+#: tgverify.py:92
+msgid "Minimum living minutes required for verification removed!"
+msgstr "Минимальное игровое время, необходимое для проверки удалено!"
 
-#: tgverify\tgverify.py:65
+#: tgverify.py:95
+#, python-brace-format
 msgid ""
-"\n"
-"        Gets the current settings for the verification system\n"
-"        "
+"Minimum living minutes required for verification set to: "
+"`{min_living_minutes}`"
 msgstr ""
-"\n"
-"Получает текущие настройки системы верификации аккаунтов "
+"Минимальное игровое время, необходимое для проверки, установлено на: "
+"`{min_living_minutes}`"
 
-#: tgverify\tgverify.py:82
-msgid ""
-"\n"
-"        Sets the minimum required living minutes before this bot will apply "
-"a verification role to a user\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает минимально необходимое игровое время, прежде чем этот бот "
-"применит подтвержденную роль к пользователю. "
+#: tgverify.py:98
+msgid "There was a problem setting the minimum required living minutes"
+msgstr "Не удалось установить минимально необходимое игровое время"
 
-#: tgverify\tgverify.py:98
-msgid ""
-"\n"
-"        Sets the link to further instructions on how to generate "
-"verification information\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает ссылку на дальнейшие инструкции по подтверждению аккаунта "
+#: tgverify.py:107
+#, python-brace-format
+msgid "Instruction link set to: `{instruction_link}`"
+msgstr "Ссылка на инструкцию установлена ​​на: `{instruction_link}`"
 
-#: tgverify\tgverify.py:110
-msgid ""
-"\n"
-"        Sets the channel to send the welcome message\n"
-"        If channel isn\"t specified, the guild's default channel will be "
-"used\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает канал для отправки приветственного сообщения\n"
-"Если канал не указан, будет использоваться канал сервера по умолчанию. "
+#: tgverify.py:110
+msgid "There was a problem setting the instructions link"
+msgstr "При установке ссылки на инструкцию возникла проблема"
 
-#: tgverify\tgverify.py:131
-msgid ""
-"\n"
-"        Sets the welcoming greeting\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает приветственное приветствие "
+#: tgverify.py:123
+#, python-brace-format
+msgid "I do not have permissions to send messages to {channel}"
+msgstr "У меня нет прав на отправку сообщений в {channel}"
 
-#: tgverify\tgverify.py:143
-msgid ""
-"\n"
-"        Sets the welcoming greeting when the verification system is "
-"disabled\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает приветственное приветствие при отключенной системе проверки "
+#: tgverify.py:130
+#, python-brace-format
+msgid "I will now send welcome messages to {channel}"
+msgstr "Теперь я отправляю приветственные сообщения в {channel}"
 
-#: tgverify\tgverify.py:155
-msgid ""
-"\n"
-"        Sets the additional message added to the greeting message when the "
-"bunker is on\n"
-"        "
-msgstr ""
-"\n"
-"Устанавливает дополнительное сообщение, добавляемое к приветственному "
-"сообщению, когда бункер включен "
+#: tgverify.py:140
+#, python-brace-format
+msgid "Welcome greeting set to: `{welcomegreeting}`"
+msgstr "Приветственное сообщение установлено на: `{welcomegreeting}`"
 
-#: tgverify\tgverify.py:167
-msgid ""
-"\n"
-"        Toggle bunker status on or off\n"
-"        "
-msgstr ""
-"\n"
-"Включить или выключить статус бункера "
+#: tgverify.py:143
+msgid "There was a problem setting the Welcome greeting"
+msgstr "При установке ссылки на инструкцию возникла проблема"
 
-#: tgverify\tgverify.py:184
-msgid ""
-"\n"
-"        For when verification breaks\n"
-"        "
+#: tgverify.py:152
+#, python-brace-format
+msgid "Disabled greeting set to: `{disabledgreeting}`"
 msgstr ""
-"\n"
-"Включение/выключение системы подтверждения аккаунта "
+"Для отключенного приветствия установлено значение: `{disabledgreeting}`"
 
-#: tgverify\tgverify.py:201
-msgid ""
-"\n"
-"        Set what role is applied when a user verifies\n"
-"        "
-msgstr ""
-"\n"
-"Установите, какая роль применяется, когда пользователь подтвердит свой "
-"аккаунт "
+#: tgverify.py:155
+msgid "There was a problem setting the disabled greeting"
+msgstr "При установке отключенного приветствия возникла проблема"
 
-#: tgverify\tgverify.py:220
-msgid ""
-"\n"
-"        List all past discord accounts this ckey has verified with\n"
-"        "
-msgstr ""
-"\n"
-"Список всех прошлых учетных записей Discord, с которыми этот ckey связан "
+#: tgverify.py:164
+#, python-brace-format
+msgid "Bunker warning set to: `{bunkerwarning}`"
+msgstr "Предупреждение о бункере установлено на: `{bunkerwarning}`"
 
-#: tgverify\tgverify.py:242
-msgid ""
-"\n"
-"        Return the ckey attached to the given discord user, if they have "
-"one\n"
-"        "
-msgstr ""
-"\n"
-"Вернуть ckey, прикрепленный к данному пользователю Discord, если он у него "
-"есть "
+#: tgverify.py:167
+msgid "There was a problem setting the bunker warning"
+msgstr "Не удалось установить предупреждение о бункере"
 
-#: tgverify\tgverify.py:258
-msgid ""
-"\n"
-"        Deverifies the ckey linked to this user, all historical "
-"verifications will be removed, the user will have to connect to the game\n"
-"        and generate a new one time token to get their verification role\n"
-"        "
-msgstr ""
-"\n"
-"Деактивирует ckey, связанный с этим пользователем, все исторические "
-"подтверждения будут удалены, пользователю необходимо будет подключиться к "
-"игре\n"
-"        и создать новый одноразовый токен, чтобы получить подтвержденную "
-"роль "
+#: tgverify.py:179
+msgid "The bunker warning is now on"
+msgstr "Предупреждение о бункере теперь включено"
 
-#: tgverify\tgverify.py:282
-msgid ""
-"\n"
-"        Attempt to verify the user, based on the passed in one time code\n"
-"        This command is rated limited to two attempts per user every 60 "
-"seconds, and 6 attempts per entire discord every 60 seconds\n"
-"        "
-msgstr ""
-"\n"
-"        Попытка проверить пользователя на основе переданного токена\n"
-"        Эта команда ограничена двумя попытками на пользователя каждые 60 "
-"секунд и 6 попытками на весь сервер каждые 60 секунд "
+#: tgverify.py:181
+msgid "The bunker warning is now off"
+msgstr "Предупреждение о бункере отключено"
 
-#: tgverify\tgverify.py:383
-msgid ""
-"\n"
-"        Test welcome message sending\n"
-"        "
+#: tgverify.py:184
+msgid "There was a problem toggling the bunker"
+msgstr "Не удалось переключить бункер"
+
+#: tgverify.py:196
+msgid "The verification system is now off"
+msgstr "Система подтверждения отключена"
+
+#: tgverify.py:198
+msgid "The verification system is now on"
+msgstr "Система подтверждения включена"
+
+#: tgverify.py:201
+msgid "There was a problem toggling the disabled flag"
+msgstr "Не удалось включить/отключить систему подтверждения аккаунта"
+
+#: tgverify.py:211
+msgid "This is not a valid role for this discord!"
+msgstr "Это не валидная роль для дискорда!"
+
+#: tgverify.py:214
+msgid "No role will be set when the user verifies!"
 msgstr ""
+"Никакие роли не будет установлены, когда пользователь подтвердит аккаунт!"
+
+#: tgverify.py:218
+#, python-brace-format
+msgid ""
+"When a user meets minimum verification this role will be applied: "
+"`{verified_role}`"
+msgstr ""
+"Когда пользователь прохойдет минимальную проверку, эта роль будет применена: "
+"`{verified_role}`"
+
+#: tgverify.py:222
+msgid "There was a problem setting the verified role"
+msgstr "При установке подтвержденной роли возникла проблема"
+
+#: tgverify.py:231
+msgid "Collecting discord accounts for ckey...."
+msgstr "Сбор аккаунтов Discord для ckey...."
+
+#: tgverify.py:235
+#, python-brace-format
+msgid "Discord accounts historically linked to {account}"
+msgstr "Учетные записи Discord, исторически связанные с  {account}"
+
+#: tgverify.py:238
+msgid "No discord accounts found for this ckey"
+msgstr "Для этого ckey не найдены учетные записи Discord"
+
+#: tgverify.py:242
+msgid "False"
+msgstr "Нет"
+
+#: tgverify.py:244
+msgid "True"
+msgstr "Да"
+
+#: tgverify.py:245
+#, python-brace-format
+msgid "User linked <@{discord_id}> on {timestamp}, current account: {valid}\n"
+msgstr ""
+"Пользователь был связан с аккаунтом <@{discord_id}> в {timestamp}, текущий "
+"аккаунт: {valid}\n"
+
+#: tgverify.py:258 tgverify.py:276
+msgid "Finding out the ckey of user...."
+msgstr "Определение ключа пользователя...."
+
+#: tgverify.py:263
+#, python-brace-format
+msgid "This discord user is linked to the ckey {ckey}"
+msgstr "Этот пользователь Discord связан с ckey {ckey}"
+
+#: tgverify.py:266 tgverify.py:285
+msgid "This discord user has no ckey linked"
+msgstr "У этого пользователя Discord нет привязки ckey"
+
+#: tgverify.py:283
+msgid "User has been devalidated"
+msgstr "Пользователь был исключен"
+
+#: tgverify.py:312
+msgid ""
+"I do not have the required permissions to delete messages, please remove/"
+"edit the one time token manually."
+msgstr ""
+"У меня нет необходимых разрешений для удаления сообщений, пожалуйста, "
+"удалите/отредактируйте одноразовый токен вручную."
+
+#: tgverify.py:315
+msgid "No verification role is configured, configure it with .config role"
+msgstr "Роль проверки не настроена, настройте ее через .config"
+
+#: tgverify.py:318
+msgid "You already are verified"
+msgstr "Вы уже прошли проверку"
+
+#: tgverify.py:320
+msgid "Attempting to verify you...."
+msgstr "Попытка проверить ваши данные...."
+
+#: tgverify.py:333
+msgid "User has re-verified against their in game living minutes"
+msgstr "Пользователь повторно подтвердил свое игровое время"
+
+#: tgverify.py:335
+#, python-brace-format
+msgid "Congrats {author} your verification is complete"
+msgstr "Поздравляем {author} ваша проверка завершена"
+
+#: tgverify.py:340
+#, python-brace-format
+msgid ""
+"Sorry <@{author}> it looks like we don't recognise this one use token or it "
+"has expired or you don't have a ckey linked to this discord account, go back "
+"into game and try generating one another! See {instructions_link} for more "
+"information. \n"
 "\n"
-"Проверить отправку приветственного сообщения "
+"If it's still failing after a few tries, ask for support from the "
+"verification team"
+msgstr ""
+"Извините <@{author}> похоже, что мы не можем распознать этот токен, или срок "
+"его действия истек, или у вас нет ключа, связанного с этой учетной записью "
+"Discord, вернитесь в игру и попробуйте создать другой токен! см. "
+"{instructions_link} за дополнительной информацией. \\n\\nЕсли после "
+"нескольких попыток все еще не удается подтвердить аккаунт, обратитесь за "
+"поддержкой к администраторам"
+
+#: tgverify.py:356
+#, python-brace-format
+msgid ""
+"Sorry <@{author}> looks like we couldn't look up your user, ask the "
+"verification team for support!"
+msgstr ""
+"Извините <@{author}> похоже, мы не смогли найти вашего пользователя, "
+"обратитесь за поддержкой к команде верификации!"
+
+#: tgverify.py:361
+#, python-brace-format
+msgid ""
+"Sorry <@{author}> you only have {living_time} minutes as a living player on "
+"our servers, and you require at least {min_required_living_minutes}! You "
+"will need to play more on our servers to access all the discord channels, "
+"see {instructions_link} for more information"
+msgstr ""
+"Извините <@{author}> у вас только {living_time} минут игрового времени как "
+"живой игрок на нашем сервере, и вам потребуется как минимум "
+"{min_required_living_minutes}! Вам нужно будет больше играть на нашем "
+"сервере, чтобы получить доступ ко всем каналам discord, см. "
+"{instructions_link} за дополнительной информацией"
+
+#: tgverify.py:379
+msgid "User has verified against their in game living minutes"
+msgstr "Пользователь проверил свой аккаунт в игре"
+
+#: tgverify.py:381
+#, python-brace-format
+msgid "Congrats <@{author}> your verification is complete"
+msgstr "Поздравляем <@{author}> ваша проверка завершена"
+
+#: tgverify.py:388
+msgid "Error attempting to verify you:"
+msgstr "Ошибка при попытке проверить аккаунт:"
+
+#: tgverify.py:393
+msgid "There are too many verifications in process, try again in 30 seconds:"
+msgstr "Идет слишком много проверок, повторите попытку через 30 секунд:"
+
+#: tgverify.py:399
+msgid "Hey slow down buddy:"
+msgstr "Эй, притормози, приятель:"
+
+#: tgverify.py:404
+msgid "Wrong channel, bud, leather club is 3 blocks down:"
+msgstr "Неправильный канал, кожаный клуб находится в 3 кварталах отсюда:"
+
+#: tgverify.py:411
+msgid "System error occurred"
+msgstr "Произошла системная ошибка"
+
+#: tgverify.py:412
+msgid "Contact the server admins for assistance"
+msgstr "Обратитесь за помощью к администраторам сервера"
+
+#~ msgid ""
+#~ "\n"
+#~ "        SS13 Configure the settings on the verification cog\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "SS13 Настройка системы подтверждения аккаунта "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Gets the current settings for the verification system\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Получает текущие настройки системы верификации аккаунтов "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the minimum required living minutes before this bot will "
+#~ "apply a verification role to a user\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает минимально необходимое игровое время, прежде чем этот бот "
+#~ "\"\n"
+#~ "\"применит подтвержденную роль к пользователю "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the link to further instructions on how to generate "
+#~ "verification information\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает ссылку на дальнейшие инструкции по подтверждению аккаунта "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the channel to send the welcome message\n"
+#~ "        If channel isn\"t specified, the guild's default channel will be "
+#~ "used\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает канал для отправки приветственного сообщения\n"
+#~ "Если канал не указан, будет использоваться канал сервера по умолчанию. "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the welcoming greeting\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает приветственное приветствие "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the welcoming greeting when the verification system is "
+#~ "disabled\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает приветственное приветствие при отключенной системе проверки "
+
+#~ msgid ""
+#~ "\n"
+#~ "        Sets the additional message added to the greeting message when "
+#~ "the bunker is on\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Устанавливает дополнительное сообщение, добавляемое к приветственному "
+#~ "сообщению, когда бункер включен "

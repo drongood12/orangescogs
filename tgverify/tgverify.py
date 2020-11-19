@@ -89,13 +89,13 @@ class TGverify(BaseCog):
         try:
             if min_living_minutes is None:
                 await self.config.guild(ctx.guild).min_living_minutes.set(0)
-                await ctx.send(f"Minimum living minutes required for verification removed!")
+                await ctx.send(_("Minimum living minutes required for verification removed!"))
             else:
                 await self.config.guild(ctx.guild).min_living_minutes.set(min_living_minutes)
-                await ctx.send(f"Minimum living minutes required for verification set to: `{min_living_minutes}`")
+                await ctx.send(_("Minimum living minutes required for verification set to: `{min_living_minutes}`").format(min_living_minutes=min_living_minutes))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the minimum required living minutes")
+            await ctx.send(_("There was a problem setting the minimum required living minutes"))
 
     @config.command()
     async def instructions_link(self, ctx, instruction_link: str):
@@ -104,10 +104,10 @@ class TGverify(BaseCog):
         """
         try:
             await self.config.guild(ctx.guild).instructions_link.set(instruction_link)
-            await ctx.send(f"Instruction link set to: `{instruction_link}`")
+            await ctx.send(_("Instruction link set to: `{instruction_link}`").format(instruction_link=instruction_link))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the instructions link")
+            await ctx.send(_("There was a problem setting the instructions link"))
 
     @config.command()
     async def welcome_channel(self, ctx, channel: discord.TextChannel):
@@ -116,18 +116,18 @@ class TGverify(BaseCog):
         If channel isn"t specified, the guild's default channel will be used
         """
         guild = ctx.message.guild
-        guild_settings = await self.config.guild(guild).welcomechannel()
+        await self.config.guild(guild).welcomechannel()
         if channel is None:
             channel = ctx.message.channel
         if not channel.permissions_for(ctx.me).send_messages:
-            msg = "I do not have permissions to send messages to {channel}".format(
+            msg = _("I do not have permissions to send messages to {channel}").format(
                 channel=channel.mention
             )
             await ctx.send(msg)
             return
         guild_settings = channel.id
         await self.config.guild(guild).welcomechannel.set(guild_settings)
-        msg = "I will now send welcome messages to {channel}".format(channel=channel.mention)
+        msg = _("I will now send welcome messages to {channel}").format(channel=channel.mention)
         await channel.send(msg)
 
     @config.command()
@@ -137,10 +137,10 @@ class TGverify(BaseCog):
         """
         try:
             await self.config.guild(ctx.guild).welcomegreeting.set(welcomegreeting)
-            await ctx.send(f"Welcome greeting set to: `{welcomegreeting}`")
+            await ctx.send(_("Welcome greeting set to: `{welcomegreeting}`").format(welcomegreeting=welcomegreeting))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the Welcome greeting")
+            await ctx.send(_("There was a problem setting the Welcome greeting"))
 
     @config.command()
     async def disabled_greeting(self, ctx, disabledgreeting: str):
@@ -149,10 +149,11 @@ class TGverify(BaseCog):
         """
         try:
             await self.config.guild(ctx.guild).disabledgreeting.set(disabledgreeting)
-            await ctx.send(f"Disabled greeting set to: `{disabledgreeting}`")
+            await ctx.send(_("Disabled greeting set to: `{disabledgreeting}`")
+                           .format(disabledgreeting=disabledgreeting))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the disabled greeting")
+            await ctx.send(_("There was a problem setting the disabled greeting"))
 
     @config.command()
     async def bunker_warning(self, ctx, bunkerwarning: str):
@@ -161,10 +162,10 @@ class TGverify(BaseCog):
         """
         try:
             await self.config.guild(ctx.guild).bunkerwarning.set(bunkerwarning)
-            await ctx.send(f"Bunker warning set to: `{bunkerwarning}`")
+            await ctx.send(_("Bunker warning set to: `{bunkerwarning}`").format(bunkerwarning=bunkerwarning))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the bunker warning")
+            await ctx.send(_("There was a problem setting the bunker warning"))
 
     @tgverify.command()
     async def bunker(self, ctx):
@@ -176,12 +177,12 @@ class TGverify(BaseCog):
             bunker = not bunker
             await self.config.guild(ctx.guild).bunker.set(bunker)
             if bunker:
-                await ctx.send(f"The bunker warning is now on")
+                await ctx.send(_("The bunker warning is now on"))
             else:
-                await ctx.send(f"The bunker warning is now off")
+                await ctx.send(_("The bunker warning is now off"))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem toggling the bunker")
+            await ctx.send(_("There was a problem toggling the bunker"))
 
     @tgverify.command()
     async def broken(self, ctx):
@@ -193,12 +194,12 @@ class TGverify(BaseCog):
             disabled = not disabled
             await self.config.guild(ctx.guild).disabled.set(disabled)
             if disabled:
-                await ctx.send(f"The verification system is now off")
+                await ctx.send(_("The verification system is now off"))
             else:
-                await ctx.send(f"The verification system is now on")
+                await ctx.send(_("The verification system is now on"))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem toggling the disabled flag")
+            await ctx.send(_("There was a problem toggling the disabled flag"))
 
     @config.command()
     async def verified_role(self, ctx, verified_role: int = None):
@@ -208,16 +209,18 @@ class TGverify(BaseCog):
         try:
             role = ctx.guild.get_role(verified_role)
             if not role:
-                return await ctx.send(f"This is not a valid role for this discord!")
+                return await ctx.send(_("This is not a valid role for this discord!"))
             if verified_role is None:
                 await self.config.guild(ctx.guild).verified_role.set(None)
-                await ctx.send(f"No role will be set when the user verifies!")
+                await ctx.send(_("No role will be set when the user verifies!"))
             else:
                 await self.config.guild(ctx.guild).verified_role.set(verified_role)
-                await ctx.send(f"When a user meets minimum verification this role will be applied: `{verified_role}`")
+                await ctx.send(
+                    _("When a user meets minimum verification this role will be applied: `{verified_role}`").format(
+                        verified_role=verified_role))
 
         except (ValueError, KeyError, AttributeError):
-            await ctx.send("There was a problem setting the verified role")
+            await ctx.send(_("There was a problem setting the verified role"))
 
     @tgverify.command()
     async def discords(self, ctx, ckey: str):
@@ -226,17 +229,22 @@ class TGverify(BaseCog):
         """
         tgdb = self.get_tgdb()
         ckey = normalise_to_ckey(ckey)
-        message = await ctx.send("Collecting discord accounts for ckey....")
+        message = await ctx.send(_("Collecting discord accounts for ckey...."))
         async with ctx.typing():
             embed = discord.Embed(color=await ctx.embed_color())
-            embed.set_author(name=f"Discord accounts historically linked to {str(ckey).title()}")
+            embed.set_author(
+                name=_("Discord accounts historically linked to {account}").format(account=str(ckey).title()))
             links = await tgdb.all_discord_links_for_ckey(ctx, ckey)
             if len(links) <= 0:
-                return await message.edit(content="No discord accounts found for this ckey")
+                return await message.edit(content=_("No discord accounts found for this ckey"))
 
             names = ""
             for link in links:
-                names += f"User linked <@{link.discord_id}> on {link.timestamp}, current account: {link.validity}\n"
+                valid = _("False")
+                if link.validity:
+                    valid = _("True")
+                names += _("User linked <@{discord_id}> on {timestamp}, current account: {valid}\n") \
+                    .format(discord_id=link.discord_id, timestamp=link.timestamp, valid=valid)
 
             embed.add_field(name="__Discord accounts__", value=names, inline=False)
             await message.edit(content=None, embed=embed)
@@ -248,33 +256,35 @@ class TGverify(BaseCog):
         """
         tgdb = self.get_tgdb()
 
-        message = await ctx.send("Finding out the ckey of user....")
+        message = await ctx.send(_("Finding out the ckey of user...."))
         async with ctx.typing():
             # Attempt to find the discord ids based on the one time token passed in.
             discord_link = await tgdb.discord_link_for_discord_id(ctx, discord_user.id)
             if discord_link:
-                await message.edit(content=f"This discord user is linked to the ckey {discord_link.ckey}")
+                await message.edit(content=_("This discord user is linked to the ckey {ckey}")
+                                   .format(ckey=discord_link.ckey))
             else:
-                await message.edit(content=f"This discord user has no ckey linked")
+                await message.edit(content=_("This discord user has no ckey linked"))
 
     @tgverify.command()
     async def deverify(self, ctx, discord_user: discord.User):
         """
-        Deverifies the ckey linked to this user, all historical verifications will be removed, the user will have to connect to the game
+        Deverifies the ckey linked to this user, all historical verifications will be removed,
+        the user will have to connect to the game
         and generate a new one time token to get their verification role
         """
         tgdb = self.get_tgdb()
 
-        message = await ctx.send("Finding out the ckey of user....")
+        message = await ctx.send(_("Finding out the ckey of user...."))
         async with ctx.typing():
             # Attempt to find the discord link from the user
             discord_link = await tgdb.discord_link_for_discord_id(ctx, discord_user.id)
             if discord_link:
                 # now clear all the links for this ckey
                 await tgdb.clear_all_valid_discord_links_for_ckey(ctx, discord_link.ckey)
-                message = await message.edit(content=f"User has been devalidated")
+                await message.edit(content=_("User has been devalidated"))
             else:
-                message = await message.edit(content=f"This discord user has no ckey linked")
+                await message.edit(content=_("This discord user has no ckey linked"))
 
     # Now the only user facing command, so this has rate limiting across the sky
     @commands.cooldown(2, 60, type=commands.BucketType.user)
@@ -285,7 +295,8 @@ class TGverify(BaseCog):
     async def verify(self, ctx, *, one_time_token: str = None):
         """
         Attempt to verify the user, based on the passed in one time code
-        This command is rated limited to two attempts per user every 60 seconds, and 6 attempts per entire discord every 60 seconds
+        This command is rated limited to two attempts per user every 60 seconds,
+        and 6 attempts per entire discord every 60 seconds
         """
         # Get the minimum required living minutes
         min_required_living_minutes = await self.config.guild(ctx.guild).min_living_minutes()
@@ -300,16 +311,16 @@ class TGverify(BaseCog):
         try:
             await ctx.message.delete()
         except discord.DiscordException:
-            await ctx.send(
+            await ctx.send(_(
                 "I do not have the required permissions to delete messages, "
-                "please remove/edit the one time token manually.")
+                "please remove/edit the one time token manually."))
         if not role:
-            raise TGUnrecoverableError("No verification role is configured, configure it with .config role")
+            raise TGUnrecoverableError(_("No verification role is configured, configure it with .config role"))
 
         if role in ctx.author.roles:
-            return await ctx.send("You already are verified")
+            return await ctx.send(_("You already are verified"))
 
-        message = await ctx.send("Attempting to verify you....")
+        message = await ctx.send(_("Attempting to verify you...."))
         async with ctx.typing():
 
             if one_time_token:
@@ -322,11 +333,22 @@ class TGverify(BaseCog):
                 discord_link = await tgdb.discord_link_for_discord_id(ctx, ctx.author.id)
                 if discord_link and discord_link.valid > 0:
                     # we have a fast path, just reapply the linked role and bail
-                    await ctx.author.add_roles(role, reason="User has re-verified against their in game living minutes")
-                    return await message.edit(content=f"Congrats {ctx.author} your verification is complete")
+                    await ctx.author.add_roles(role, reason=_("User has re-verified against"
+                                                              " their in game living minutes"))
+                    return await message.edit(content=_("Congrats {author} your verification is complete")
+                                              .format(author=ctx.author))
 
                 raise TGRecoverableError(
-                    f"Sorry {ctx.author} it looks like we don't recognise this one use token or it has expired or you don't have a ckey linked to this discord account, go back into game and try generating one another! See {instructions_link} for more information. \n\nIf it's still failing after a few tries, ask for support from the verification team, ")
+                    _(
+                        "Sorry <@{author}> it looks like we don't recognise this one use token or it has expired or "
+                        "you don't have a ckey linked to this discord account,"
+                        " go back into game and try generating one another!"
+                        " See {instructions_link} for more information. \n\nIf it's still failing after a few "
+                        "tries, ask for support from the verification team").format(
+                        author=ctx.author.id,
+                        instructions_link=instructions_link
+                    )
+                )
 
             log.info(f"Verification request by {ctx.author.id}, for ckey {ckey}")
             # Now look for the user based on the ckey
@@ -334,11 +356,21 @@ class TGverify(BaseCog):
 
             if player is None:
                 raise TGRecoverableError(
-                    f"Sorry {ctx.author} looks like we couldn't look up your user, ask the verification team for support!")
+                    _("Sorry <@{author}> looks like we couldn't look up your user, ask the verification team for "
+                      "support!").format(author=ctx.author))
 
             if player['living_time'] < min_required_living_minutes:
                 return await message.edit(
-                    content=f"Sorry {ctx.author} you only have {player['living_time']} minutes as a living player on our servers, and you require at least {min_required_living_minutes}! You will need to play more on our servers to access all the discord channels, see {instructions_link} for more information")
+                    content=_("Sorry <@{author}> you only have {living_time} minutes as a living player "
+                              "on our servers, and you require at least {min_required_living_minutes}! You will need "
+                              "to play more on our servers to access all the discord channels, "
+                              "see {instructions_link} for more information").format(
+                        author=ctx.author,
+                        living_time=player['living_time'],
+                        min_required_living_minutes=min_required_living_minutes,
+                        instructions_link=instructions_link
+                    )
+                )
 
             # clear any/all previous valid links for ckey or the discord id
             # (in case they have decided to make a new ckey)
@@ -347,39 +379,40 @@ class TGverify(BaseCog):
             # Record that the user is linked against a discord id
             await tgdb.update_discord_link(ctx, one_time_token, ctx.author.id)
             if role:
-                await ctx.author.add_roles(role, reason="User has verified against their in game living minutes")
+                await ctx.author.add_roles(role, reason=_("User has verified against their in game living minutes"))
 
-            return await message.edit(content=f"Congrats {ctx.author} your verification is complete", color=0xff0000)
+            return await message.edit(content=_("Congrats <@{author}> your verification is complete")
+                                      .format(author=ctx.author.id), color=0xff0000)
 
     @verify.error
     async def verify_error(self, ctx, error):
         # Our custom, something recoverable went wrong error type
         if isinstance(error, TGRecoverableError):
-            embed = discord.Embed(title=f"Error attempting to verify you:", description=f"{format(error)}",
+            embed = discord.Embed(title=_("Error attempting to verify you:"), description=f"{format(error)}",
                                   color=0xff0000)
             await ctx.send(content=f"", embed=embed)
 
         elif isinstance(error, commands.MaxConcurrencyReached):
-            embed = discord.Embed(title=f"There are too many verifications in process, try again in 30 seconds:",
+            embed = discord.Embed(title=_("There are too many verifications in process, try again in 30 seconds:"),
                                   description=f"{format(error)}", color=0xff0000)
             await ctx.send(content=f"", embed=embed)
-            log.exception(f"Too many users attempting to verify concurrently, db wait hit?")
+            log.exception("Too many users attempting to verify concurrently, db wait hit?")
 
         elif isinstance(error, commands.CommandOnCooldown):
-            embed = discord.Embed(title=f"Hey slow down buddy:", description=f"{format(error)}", color=0xff0000)
+            embed = discord.Embed(title=_("Hey slow down buddy:"), description=f"{format(error)}", color=0xff0000)
             await ctx.send(content=f"", embed=embed)
             log.warning(f"Verification limit hit, user is being bad {ctx.author}, discord id {ctx.author.id}")
 
         elif isinstance(error, commands.NoPrivateMessage):
-            embed = discord.Embed(title=f"Wrong channel, bud, leather club is 3 blocks down:",
+            embed = discord.Embed(title=_("Wrong channel, bud, leather club is 3 blocks down:"),
                                   description=f"{format(error)}", color=0xff0000)
             await ctx.send(content=f"", embed=embed)
         else:
             # Something went badly wrong, log to the console
             log.exception("Internal error while verifying a user")
             # now pretend everything is fine to the user :>
-            embed = discord.Embed(title=f"System error occurred",
-                                  description=f"Contact the server admins for assistance", color=0xff0000)
+            embed = discord.Embed(title=_("System error occurred"),
+                                  description=_("Contact the server admins for assistance"), color=0xff0000)
             await ctx.send(content=f"", embed=embed)
 
     @tgverify.command()
@@ -420,7 +453,7 @@ class TGverify(BaseCog):
         bunkermsg = await self.config.guild(guild).bunkerwarning()
         bunker = await self.config.guild(guild).bunker()
         if bunkermsg != "" and bunker:
-            final = final + " " + bunkermsg
+            final += " " + bunkermsg
 
         await channel.send(final)
 
