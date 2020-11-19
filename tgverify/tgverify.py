@@ -92,7 +92,8 @@ class TGverify(BaseCog):
                 await ctx.send(_("Minimum living minutes required for verification removed!"))
             else:
                 await self.config.guild(ctx.guild).min_living_minutes.set(min_living_minutes)
-                await ctx.send(_("Minimum living minutes required for verification set to: `{min_living_minutes}`").format(min_living_minutes=min_living_minutes))
+                await ctx.send(_("Minimum living minutes required for verification set to: `{min_living_minutes}`")
+                               .format(min_living_minutes=min_living_minutes))
 
         except (ValueError, KeyError, AttributeError):
             await ctx.send(_("There was a problem setting the minimum required living minutes"))
